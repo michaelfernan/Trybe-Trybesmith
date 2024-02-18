@@ -1,12 +1,15 @@
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+import chaiHttp from 'chai-http'; 
 import { Request, Response } from 'express';
 import createProduct from '../../../src/controllers/productController';
 import * as productService from '../../../src/services/productService';
+import { allMockedProducts } from '../../mocks/mockProducts';
+import app from '../../../src/app';
 
 chai.use(sinonChai);
-
+chai.use(chaiHttp);
 describe('ProductsController', function () {
   const req = {} as Request;
   const res = {} as Response;
@@ -45,4 +48,16 @@ describe('ProductsController', function () {
     addProductStub.restore();
   });
   
+});
+describe('GET /products', () => {
+  it('deve listar todos os produtos com sucesso', async () => {
+    sinon.stub(productService, 'getAllProducts').resolves(allMockedProducts);
+
+    const response = await chai.request(app).get('/products');
+
+    expect(response).to.have.status(200);
+    expect(response.body).to.be.an('array');
+    expect(response.body).to.have.lengthOf(allMockedProducts.length);
+    expect(response.body).to.deep.equal(allMockedProducts);
+  });
 });

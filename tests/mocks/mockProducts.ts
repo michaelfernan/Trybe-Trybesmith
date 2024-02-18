@@ -34,3 +34,11 @@ export const mockedProduct5: Product = {
   price: '49.99',
   userId: 4,
 };
+
+export const allMockedProducts = [
+  mockedProduct1,
+  mockedProduct2,
+  mockedProduct3,
+  mockedProduct4,
+  mockedProduct5,
+];
