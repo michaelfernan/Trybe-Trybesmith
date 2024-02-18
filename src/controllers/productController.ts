@@ -7,7 +7,7 @@ const createProduct = async (req: Request, res: Response) => {
     const newProduct = await addProduct(productData);
     return res.status(201).json(newProduct);
   } catch (error) {
-    // Tratar erros adequadamente
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
