@@ -2,7 +2,7 @@ import express from 'express';
 import createProduct, { listProducts } from './controllers/productController';
 import getAllUsers from './controllers/userController';
 import loginController from './controllers/loginController';
-import validateProduct from './controllers/validation';
+import { validateProduct } from './controllers/validation';
 
 const router = express.Router();
 
