@@ -6,7 +6,7 @@ async function getAllUsers(req: Request, res: Response): Promise<void> {
     const users = await getAllUsersWithProducts();
     res.status(200).json(users);
   } catch (error) {
-    console.error('Error in getAllUsers: ', error); // Adicionado para ajudar na depuração
+    console.error('Error in getAllUsers: ', error);
     res.status(500).json({ message: 'Internal server error controller' });
   }
 }

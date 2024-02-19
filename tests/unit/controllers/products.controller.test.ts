@@ -49,8 +49,9 @@ describe('ProductsController', function () {
   });
   
 });
+
 describe('GET /products', () => {
-  it('deve listar todos os produtos com sucesso', async () => {
+  it('should list all products successfully', async () => {
     sinon.stub(productService, 'getAllProducts').resolves(allMockedProducts);
 
     const response = await chai.request(app).get('/products');
